@@ -74,11 +74,9 @@ class Sudoku:
             #and store in list new_boards
             for num in numbers:
                 if self.element_is_valid(num, index):
-                    #print str(num) + " " + str(self.element_is_valid(num, index))
                     self.board[index] = num
                     new_boards.append(Sudoku(copy(self.board)))
                     self.board[index] = 0
-            #print "Beginning recursive call"
             if new_boards == []:
                 return []
             else:
