@@ -81,6 +81,7 @@ class BoardList(Resource):
         return USERS[user_id]
 
 api.add_resource(UserList, '/users/')
+api.add_resource(User, '/users/<string:user_id>')
 api.add_resource(BoardList, '/users/<string:user_id>/boards/')
 api.add_resource(Board, '/users/<string:user_id>/boards/<string:board_id>')
 
