@@ -7,69 +7,42 @@ from time import time
 
 script, f = argv
 
-def txt_to_board(f):
+def txt_to_matrix(f):
     '''
     Takes input file containing Sudoku board
-    and produces a Sudoku object
+    and produces a matrix
     '''
     line_arr = []
     o = open(f, 'r')
     for line in o:
         line.strip("\n")
         line_arr.append(" ".join(line.split(",")))
-    board = matrix((";".join(line_arr)))
+    mat = matrix((";".join(line_arr)))
     o.close()
-    return board
+    return mat
 
-def make_readable_solution(mat):
+def check_min_board(mat):
     '''
-    Converts matrix to a human-readable string
-    '''
-    ans = []
-    for row in mat:
-        ans.append(row.__str__().strip('[[]]'))
-    return "\n".join(ans)
-
-def convert_format(f):
-    '''
-    Simple function that converts between formats
-    I initially used and Codecademy wanted for the Sudoku puzzle
-    '''
-    ans = ""
-    o = open(f, 'r+')
-    for line in o:
-        line = line.strip("\n")
-        line = ",".join(line.split(" ")) + "\n"
-        ans += line
-    o.seek(0)
-    o.write(ans)
-    o.truncate()
-    o.close()
-
-def check_min_board(board):
-    '''
-    Check if board has minimum number of numbers for a Sudoku puzzle
+    Check if matrix has minimum number of numbers for a Sudoku puzzle
     '''
     count = 0
     for i in range(9):
         for j in range(9):
-            if self.board[i,j] != 0:
+            if mat[i,j] != 0:
                 count += 1
     return count >= 17
 
-def main(f):
+def process_file(f):
     '''
-    Main procedure for the Sudoku solver
-    Solves Sudoku puzzle, calculates calculation time,
-    and prints out the solutions
+    Processes a Sudoku board from file f and returns a solution along with calculation time.
     '''
-    board = txt_to_board(f)
-    if len(board) != 9: #make sure given board is 9 x 9
+    mat = txt_to_matrix(f)
+    if len(mat) != 9: #make sure given board is 9 x 9
         print "Invalid Sudoku board! Incorrect dimensions."
-    elif not check_min_board(): #make sure board has minimum number of numbers
+    elif not check_min_board(mat): #make sure matrix has minimum number of numbers
         print "Invalid Sudoku board! Not enough numbers for a solution."
     else:
-        puzzle = Sudoku(board)
+        puzzle = Sudoku(mat)
         t_i = time()
         answers = puzzle.solve_board()
         t_f = time()
@@ -82,6 +55,7 @@ def main(f):
                   " found in " + str(dt) + " seconds!\n"
             for i in range(len(answers)):
                 print "n = " + str(i+1) + "\n"
-                print make_readable_solution(answers[i]) + ("" if len(answers)==1 else "\n")
+                print str(answers[i]) + ("" if len(answers)==1 else "\n")
 
-main(f)
+if __name__ == "__main__":
+    process_file(f)

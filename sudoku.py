@@ -3,26 +3,19 @@ from copy import copy
 
 class Sudoku:
 
-    def __init__(self, board):
-        self.board = board
+    def __init__(self, mat):
+        
+        self.board = mat #Sudoku class takes in matrix as board
         #blocks are the 3 x 3 submatrices that must each uniquely contain numbers 1 - 9
         self.blocks = [[self.board[0:3, 0:3], self.board[0:3, 3:6], self.board[0:3, 6:9]], \
                        [self.board[3:6, 0:3], self.board[3:6, 3:6], self.board[3:6, 6:9]], \
                        [self.board[6:9, 0:3], self.board[6:9, 3:6], self.board[6:9, 6:9]]]
 
     def __str__(self):
-        return self.board.__str__()
-
-    def check_min_board(self):
-        '''
-        Check if board has minimum number of numbers for a Sudoku puzzle
-        '''
-        count = 0
-        for i in range(9):
-            for j in range(9):
-                if self.board[i,j] != 0:
-                    count += 1
-        return count >= 17
+        rows_list = []
+        for row in self.board:
+                rows_list.append(str(row).strip('[[]]'))
+        return "\n".join(rows_list)
 
     def check_row(self, elt, index):
         '''
@@ -75,7 +68,7 @@ class Sudoku:
         '''
 
         if self.is_solved():
-            return [self.board]
+            return [Sudoku(self.board)]
         else:
             numbers = range(1,10)
             #find entry with lowest index in matrix containing 0

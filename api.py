@@ -19,13 +19,13 @@ def txt_to_board(f):
     o.close()
     return board
 
-def generate_boards_list(path='./boards'):
+def generate_boards_list(path='./boards/'):
     '''
     Generate list of boards given directory containing text files
     '''
     boards = {}
     for f in os.listdir(path):
-        boards[f.strip(".txt")] = txt_to_board(path + '/' + f)
+        boards[f.strip(".txt")] = txt_to_board(path + f)
     return boards
 
 BOARDS = generate_boards_list()
@@ -77,7 +77,6 @@ class Board(Resource):
         return USERS[user_id][board_id], 201
 
 class BoardList(Resource):
-
     def get(self, user_id):
         return USERS[user_id]
 
