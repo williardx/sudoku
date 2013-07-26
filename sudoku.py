@@ -13,6 +13,17 @@ class Sudoku:
     def __str__(self):
         return self.board.__str__()
 
+    def check_min_board(self):
+        '''
+        Check if board has minimum number of numbers for a Sudoku puzzle
+        '''
+        count = 0
+        for i in range(9):
+            for j in range(9):
+                if self.board[i,j] != 0:
+                    count += 1
+        return count >= 17
+
     def check_row(self, elt, index):
         '''
         Check if element is in row i for index (i,j)
