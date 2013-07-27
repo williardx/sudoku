@@ -10,14 +10,18 @@ script, f = argv
 def txt_to_matrix(f):
     '''
     Takes input file containing Sudoku board
-    and produces a matrix
+    and produces a matrix usable for the Sudoku class
     '''
-    line_arr = []
+    line_list = []
     o = open(f, 'r')
     for line in o:
-        line.strip("\n")
-        line_arr.append(" ".join(line.split(",")))
-    mat = matrix((";".join(line_arr)))
+        line = line.strip("\n")
+        line_chars = line.split(",")
+        for i in range(len(line_chars)):
+            if line_chars[i] == "":
+                line_chars[i] = '0'
+        line_list.append(" ".join(line_chars))
+    mat = matrix((";".join(line_list)))
     o.close()
     return mat
 
@@ -46,7 +50,7 @@ def process_file(f):
         t_i = time()
         answers = puzzle.solve_board()
         t_f = time()
-        dt = (t_f - t_i)
+        dt = t_f - t_i
         if len(answers) == 0:
             print "Sorry, no solutions were found."
             print "Total calculation time was " + str(dt) + " seconds"

@@ -33,7 +33,7 @@ class Sudoku:
         '''
         Check if element is in block containing (i,j)th index
         '''
-        return elt in self.blocks[index[0] / 3][index[1] / 3]
+        return elt in self.blocks[index[0] // 3][index[1] // 3]
 
     def element_is_valid(self, elt, index):
         '''
