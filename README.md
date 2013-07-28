@@ -9,6 +9,19 @@ Sudoku input must be in the form a text file containing only the board. Columns 
 	0,0,2,0,4,1,0,0,0 
 	,,2,,4,1,,,
 
+Here's an example of a valid Sudoku board:
+
+	0,5,6,9,0,7,4,0,0
+	0,8,1,0,4,0,0,0,0
+	0,0,0,0,1,5,0,9,0
+	0,0,0,0,0,3,8,5,7
+	8,4,0,0,6,0,0,2,3
+	7,3,9,2,0,0,0,0,0
+	0,6,0,5,8,0,0,0,0
+	0,0,0,0,7,0,3,6,0
+	0,0,8,3,0,6,5,7,0
+
+
 If you give a Sudoku board with the wrong dimensions or with less than the minimum number of numbers to solve the puzzle (17), the program will complain.
 
 Use
