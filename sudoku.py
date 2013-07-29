@@ -64,7 +64,7 @@ class Sudoku:
 
     def solve_board(self):
         '''
-        Solve Sudoku board
+        Solves Sudoku board.
         '''
 
         if self.is_solved():
@@ -84,6 +84,7 @@ class Sudoku:
             if new_boards == []:
                 return []
             else:
-                #apply solve_board to valid boards in list and concatenate together answer lists
-                #(either [] or [board]) to generate list of answers
-                return reduce(list.__add__, [board.solve_board() for board in new_boards])
+                #apply solve_board to valid boards in new_board
+                #and concatenate together answer lists
+                #(either [] or [solved_board]) to generate list of answers
+                return sum([board.solve_board() for board in new_boards], [])
