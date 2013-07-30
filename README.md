@@ -1,6 +1,6 @@
 sudoku
 ======
-sudoku is a Sudoku puzzle solver. It contains `solver.py`, which processes Sudoku boards from a text file and then passes it to the Sudoku solver contained in `Sudoku.py`. Example boards are given in `boards`, including boards that produce one solution, no solution, and many solutions.
+sudoku is a Sudoku puzzle solver. It contains `readfile.py`, which processes Sudoku boards from a text file and then passes it to the Sudoku solver contained in `sudoku.py`. Example boards are given in `boards`, including boards that produce one solution, no solution, and many solutions.
 
 Input
 -----
@@ -27,7 +27,7 @@ If you give a Sudoku board with the wrong dimensions or with less than the minim
 Use
 ---
 
-	python solver.py BOARD.txt
+	python readfile.py BOARD.txt
 
 where `BOARD.txt` is the text file containing your comma-delimited Sudoku board.
 
